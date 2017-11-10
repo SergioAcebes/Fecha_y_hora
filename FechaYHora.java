@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class FechaYHora here.
+ * Ejercicio que nos permitira crear un objeto que nos almacenara la fecha y la hora.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Sergio Acebes
+ * version 10/11/2017
  */
 public class FechaYHora
 {
@@ -14,7 +14,7 @@ public class FechaYHora
     private NumberDisplay hora;
     private NumberDisplay minutos;
     /**
-     * Constructor for objects of class FechaYHora
+     * Constructor de la clase FechaYHora.
      */
     public FechaYHora()
     {
@@ -24,4 +24,6 @@ public class FechaYHora
         hora= new NumberDisplay(24);
         minutos=new NumberDisplay(60);
     }
+     
+    
 }
