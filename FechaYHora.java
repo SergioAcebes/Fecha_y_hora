@@ -11,8 +11,11 @@ public class FechaYHora
     private DisplayDosCaracteres day;
     private DisplayDosCaracteres month;
     private DisplayDosCaracteres year;
-    private NumberDisplay hora;
-    private NumberDisplay minutos;
+    private NumberDisplay hours;
+    private NumberDisplay minutes;
+    private String displayString; 
+    private int limit;
+    private int value;
     /**
      * Constructor de la clase FechaYHora.
      */
@@ -21,9 +24,63 @@ public class FechaYHora
         day = new DisplayDosCaracteres(31);
         month = new DisplayDosCaracteres(13);
         year = new DisplayDosCaracteres(99);
-        hora= new NumberDisplay(24);
-        minutos=new NumberDisplay(60);
+        hours= new NumberDisplay(24);
+        minutes=new NumberDisplay(60);
     }
-     
-    
+
+    /**
+     * Return the current time of this display in the format HH:MM.
+     */
+    public String getTime()
+    {
+        return displayString;
+    }
+    /**
+     * This method should get called once every minute - it makes
+     * the clock display go one minute forward.
+     */
+    public void timeTick()
+    {
+        minutes.increment();
+        if(minutes.getValue() == 0) {  // it just rolled over!
+            hours.increment();
+        }
+        updateDisplay();
+    }
+    /**
+     * Update the internal string that represents the display.
+     */
+    private void updateDisplay()
+    {
+        displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue();
+    }
+    /**
+     * Método para que te devuelva la fecha.
+     */
+    public String obtenerFechayhora(){
+        //Devolverá la fecha en modo dd/MM/aaaa.
+        return day.getTextoDelDisplay() + "-" + month.getTextoDelDisplay()  + "-" + year.getTextoDelDisplay();
+    }
+      /**
+     * Método para fijar la fecha que queramos.
+     */
+    public void fijarFecha(int dia,int mes,int ano){
+        day.setValorAlmacenado(dia);
+        month.setValorAlmacenado(mes);
+        year.setValorAlmacenado(ano);
+    }
+     /**
+     * Método para avanzar un dia.
+     */
+    public void avanzarFecha(){
+        day.incrementaValorAlmacenado();
+        if (day.getValorAlmacenado()==1){
+            month.incrementaValorAlmacenado();
+            if (month.getValorAlmacenado()== 1){
+                year.incrementaValorAlmacenado();
+
+            }
+        }
+    }
 }
